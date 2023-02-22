@@ -30,10 +30,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Obtiene la ruta absoluta del archivo
     let image_path = canonicalize(&image_file)?;
-    let image_path_str = image_path.to_str().ok_or("Error convirtiendo PathBuf a &str")?;
+    let image_path_str = image_path
+        .to_str()
+        .ok_or("Error convirtiendo PathBuf a &str")?;
+    let image_path_str = image_path_str.replace("\\", "/");
 
     // Establecer la imagen como fondo de pantalla
-    set_from_path("D:/Jackf/Documents/code/rustStuff/apod_wall/CometZtfYosemite_Mostofi_960.jpg")?;
+    set_from_path(&image_path_str)?;
 
     println!("{image_path_str}");
     Ok(())
