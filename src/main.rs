@@ -16,7 +16,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Realiza la solicitud a la API de la nasa
     let response = client
         .get("https://api.nasa.gov/planetary/apod")
-        .query(&[(api_key)])
+        .query(&[("api_key", api_key)])
         .send()?;
 
     // Extrae la información de la respuesta en formato JSON
