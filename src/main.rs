@@ -1,16 +1,22 @@
 use reqwest::blocking::Client;
 use std::fs::{canonicalize, File};
 use std::io::copy;
+use std::env;
+use dotenv::dotenv;
 use wallpaper;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Extrae la variable de entorno (APOD_KEY)
+    dotenv().ok();
+    let api_key = env::var("API_KEY").expect("API_KEY is not defined");
+    
     // Establece un "cliente" para realizar las solicitudes http
     let client = Client::new();
 
     // Realiza la solicitud a la API de la nasa
     let response = client
         .get("https://api.nasa.gov/planetary/apod")
-        .query(&[("api_key", "behjunJYUpatUDOTKg4viq10S8DJVngIQlkfPo7f")])
+        .query(&[(api_key)])
         .send()?;
 
     // Extrae la información de la respuesta en formato JSON
