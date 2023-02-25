@@ -9,7 +9,6 @@ dependencies = [
  "dotenv",
  "reqwest",
  "serde_json",
- "tempfile",
  "wallpaper",
 ]
 
