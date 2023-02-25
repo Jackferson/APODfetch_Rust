@@ -39,11 +39,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let image_path_str = image_path
         .to_str()
         .ok_or("Error convirtiendo PathBuf a &str")?;
-    // let image_path_str = image_path_str.replace("\\", "/");
+    let image_path_str = image_path_str.replace("\\", "/");
 
     // Establecer la imagen como fondo de pantalla
-    println!("{image_path_str}");
-    wallpaper::set_from_path(r"D:\Jackf\Documents\code\rustStuff\apod_wall\NGC772-L2bh-RGB-19-8aT-cC1024.jpg")?;
+    println!("{:?}", image_path_str);
+    wallpaper::set_from_path(&image_path_str)?;
 
     Ok(())
 }
